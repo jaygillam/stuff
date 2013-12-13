@@ -1,10 +1,12 @@
 
 
 class TimeSeries(object):
+    """For storing x,y data"""
     def __init__(self, data):
         self.data = data
     
     def get(self, x):
+        """For getting y given x"""
         for (xi,yi) in self.data:
             if xi == x:
                 return yi
@@ -16,6 +18,8 @@ class TimeSeries(object):
 
 
 class StepFunctionTimeSeries(TimeSeries):
+    """For storing x,y data"""
+            
     def get(self, x):
         closest_point = None
         for (xi, yi) in self.data:
@@ -28,11 +32,13 @@ class StepFunctionTimeSeries(TimeSeries):
         return closest_point[1]
 
 class LinearTimeSeries(TimeSeries):
+        """For storing x,y data"""
     def __init__(self, data):
         TimeSeries.__init__(self, data)
         self.data.sort()
     
     def get(self, x):
+        """Get predicted y using linear interpolation of known x,y, given x"""
         # if it's out of range to the left,
         # return the first value
         if x < self.data[0][0]:

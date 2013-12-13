@@ -1,12 +1,12 @@
 
 
 class TimeSeries(object):
-    """For storing x,y data"""
+    """For storing x,y data. Data should be in a format of a ordered tuple."""
     def __init__(self, data):
         self.data = data
     
     def get(self, x):
-        """For getting y given x"""
+        """This definition finds y for a given x value. :)"""
         for (xi,yi) in self.data:
             if xi == x:
                 return yi
@@ -32,7 +32,7 @@ class StepFunctionTimeSeries(TimeSeries):
         return closest_point[1]
 
 class LinearTimeSeries(TimeSeries):
-        """For storing x,y data"""
+        """This definition will find cats that like to lie on fences between two values. It will calculate the linear proportion of cat between values/fences"""
     def __init__(self, data):
         TimeSeries.__init__(self, data)
         self.data.sort()
